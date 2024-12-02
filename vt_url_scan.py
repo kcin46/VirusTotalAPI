@@ -11,7 +11,8 @@ api_key = vault.load(open('vt_api').read())
 #Build HTTP POST request for Virus Total API
 #Submits URL to Virus Total and returns an analysis ID
 url = "https://www.virustotal.com/api/v3/urls"
-payload = { "url": "https://eicar.org"}
+payload = { "url": "http://42.86.67.28:36211/i"}
+#payload = { "url": "https://eicar.org"}
 headers = {
     "accept": "application/json",
     "content-type": "application/x-www-form-urlencoded",
@@ -31,5 +32,7 @@ headers = {
 }
 
 response = requests.get(url, headers=headers)
+response = json.loads(response.text)
 
-print(response.text)
+print(json.dumps(response, indent=4))
+
